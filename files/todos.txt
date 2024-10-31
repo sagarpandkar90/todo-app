@@ -1,7 +1,6 @@
 prepare
 shower
 new work
-be prepare
 new record1a new journey
 newtodos
 abcd
