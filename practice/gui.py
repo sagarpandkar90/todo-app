@@ -2,12 +2,13 @@ import functions
 import time
 import FreeSimpleGUI as sg
 
-sg.theme("BlueMono")
+sg.theme("Black")
 
 clock = sg.Text('', key='clock')
 label = sg.Text("Type in a to-do")
 input_box = sg.InputText(tooltip="Enter todo", key='todo')
-add_button = sg.Button("Add")
+add_button = sg.Button(size=2, image_source="add.png", mouseover_colors="LightBlue2",
+                       tooltip="Add Todo", key="Add")
 list_box = sg.Listbox(values=functions.get_todos(), key='todos',
                       enable_events=True, size=[45, 10])
 edit_button = sg.Button("Edit")
@@ -22,15 +23,20 @@ window = sg.Window('My To-Do App',
                    font=('Helvetica', 20))
 while True:
     event, values = window.read(timeout=200)
-    window["clock"].update(value=time.strftime("%b %d, %Y %H:%M:%S"))
+    #window["clock"].update(value=time.strftime("%b %d, %Y %H:%M:%S"))
     match event:
         case "Add":
-            todos = functions.get_todos()
-            new_todos = values['todo'] + '\n'
-            todos.append(new_todos)
-            functions.write_todos(todos)
-            window['todos'].update(values=todos)
-            window['todo'].update(value='')
+            new_todos = values['todo']
+            if new_todos:
+                new_todos = new_todos + '\n'
+                todos = functions.get_todos()
+                todos.append(new_todos)
+                functions.write_todos(todos)
+                window['todos'].update(values=todos)
+                window['todo'].update(value='')
+            else:
+                sg.popup("Please Enter the Todo First.")
+
         case "Edit":
             try:
                 todo_to_edit = values['todos'][0]
@@ -52,11 +58,11 @@ while True:
                 window['todo'].update(value='')
             except IndexError:
                 sg.popup("Please Select an item first.", font=('Helvetica', 20))
-        case "Exit":
-            break
+
         case 'todos':
             window['todo'].update(value=values['todos'][0])
-
+        case "Exit":
+            break
         case sg.WINDOW_CLOSED:
             break
 

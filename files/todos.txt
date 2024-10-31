@@ -2,9 +2,9 @@ prepare
 shower
 new work
 be prepare
-new record
-a new journey
+new record1a new journey
 newtodos
 abcd
-b
-as
+ar
+ar
+
