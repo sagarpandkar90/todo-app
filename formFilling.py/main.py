@@ -4,7 +4,7 @@ import streamlit.components.v1 as components
 import streamlit as st
 import pandas as pd
 import json
-
+import os
 st.title("गावानुसार अर्ज PDF तयार करा")
 
 # Excel upload
@@ -158,7 +158,10 @@ if uploaded_file:
 
 
     # Path to font in project folder
-    font_path = "https://github.com/sagarpandkar90/todo-app/tree/master/formFilling.py/fonts/NotoSerifDevanagari-VariableFont_wdth,wght.ttf"
+    
+    BASE_DIR = os.path.dirname(__file__)
+    font_path = os.path.join(BASE_DIR, "fonts", "NotoSerifDevanagari-VariableFont_wdth,wght.ttf")
+
 
     with open(font_path, "rb") as f:
         import base64
