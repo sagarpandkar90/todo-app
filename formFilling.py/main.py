@@ -158,7 +158,7 @@ if uploaded_file:
 
 
     # Path to font in project folder
-    font_path = "fonts/NotoSerifDevanagari-VariableFont_wdth,wght.ttf"
+    font_path = "https://github.com/sagarpandkar90/todo-app/tree/master/formFilling.py/fonts/NotoSerifDevanagari-VariableFont_wdth,wght.ttf"
 
     with open(font_path, "rb") as f:
         import base64
