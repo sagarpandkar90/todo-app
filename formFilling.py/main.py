@@ -516,6 +516,8 @@ content.push({{
         // Download directly
             function downloadPDF() {{
                 pdfMake.createPdf(docDef).download(form_data.village);
+                alert("✅ PDF downloaded successfully!");
+
             }}
      
                                </script>
